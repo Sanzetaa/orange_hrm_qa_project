@@ -19,6 +19,7 @@ class AdminPage(BasePage):
     FIRST_ROW_USERNAME_CELL = (By.XPATH, "(//div[@class='oxd-table-body']/div[contains(@class,'oxd-table-card')])[1]""//div[contains(@class,'oxd-table-cell')][2]")
     ADD_BUTTON = (By.XPATH, "//button[normalize-space()='Add']")
     ORANGEHRM_LINK = (By.XPATH, "//a[normalize-space()='OrangeHRM, Inc']")
+    ADD_HEADER = (By.XPATH, "//h6[text()='Add User']")
 
     def admin_page_is_displayed(self):
         return self.find_visible(self.ADMIN_HEADER)
@@ -59,6 +60,9 @@ class AdminPage(BasePage):
     
     def click_add_button(self):
         self.click(self.ADD_BUTTON)
+
+    def add_user_page_is_displayed(self):
+        return self.find_visible(self.ADD_HEADER)
 
     def click_orangeHRM_link(self):
         self.click(self.ORANGEHRM_LINK)

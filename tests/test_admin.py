@@ -1,6 +1,7 @@
 from pages.login_page import LoginPage
 from pages.dashboard_page import DashboardPage
 from pages.admin_page import AdminPage
+from pages.add_user_page import AddUserPage
 import time
 
 def test_open_admin_page(driver):
@@ -57,6 +58,12 @@ def test_reset_button_clears_all_fields(driver):
     admin.click_reset()
 
     assert admin.get_username_field_value() == ""
+
+def test_add_button(driver):
+    test_open_admin_page(driver)
+    admin = AdminPage(driver)
+    admin.click_add_button()
+    assert admin.add_user_page_is_displayed()
 
 def test_orangeHRM_link(driver):
     test_open_admin_page(driver)
