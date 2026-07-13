@@ -1,9 +1,24 @@
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
 
 class BasePage:
+    LOADER = (By.CSS_SELECTOR, ".oxd-form-loader")
+
+    def wait_for_loader_to_disappear(self, timeout=15):
+        try:
+            WebDriverWait(self.driver, timeout).until(
+            EC.invisibility_of_element_located(self.LOADER)
+        )
+        except Exception:
+            pass
+
+    def js_click(self, locator, timeout=10):
+        element = self.find(locator, timeout)
+        self.driver.execute_script("arguments[0].click();", element)
+
     def __init__(self, driver):
         self.driver = driver
 
