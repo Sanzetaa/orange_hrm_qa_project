@@ -48,3 +48,6 @@ class BasePage:
     
     def press_enter(self, locator, timeout=10):
         self.find(locator).send_keys(Keys.ENTER)
+
+    def get_value(self, locator, timeout=10):
+        return self.find(locator, timeout).get_attribute("value")

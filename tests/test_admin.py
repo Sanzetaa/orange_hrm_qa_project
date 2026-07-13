@@ -39,6 +39,25 @@ def test_invalid_username(driver):
     time.sleep(5)
     assert admin.no_record_text_is_displayed()
 
+def test_reset_button_clears_all_fields(driver):
+    login = LoginPage(driver)
+    login.load()
+    login.valid_credential_login("Admin", "admin123")
+
+    dashboard = DashboardPage(driver)
+    dashboard.click_admin_menu()
+
+    admin = AdminPage(driver)
+    assert admin.admin_page_is_displayed()
+
+    admin.search_username("Admin")
+    admin.select_user_role("Admin")
+    admin.select_status("Enabled")
+
+    admin.click_reset()
+
+    assert admin.get_username_field_value() == ""
+
 def test_orangeHRM_link(driver):
     test_open_admin_page(driver)
     admin = AdminPage(driver)
