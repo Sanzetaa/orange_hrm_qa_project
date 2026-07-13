@@ -30,3 +30,20 @@ def test_add_new_user(driver):
     time.sleep(3)
     admin2 = AdminPage(driver)
     assert admin2.admin_page_is_displayed()
+
+def test_cancel_button(driver):
+    login = LoginPage(driver)
+    login.load()
+    login.valid_credential_login("Admin", "admin123")
+    
+    dashboard = DashboardPage(driver)
+    dashboard.click_admin_menu()
+
+    admin = AdminPage(driver)
+    assert admin.admin_page_is_displayed()
+
+    admin.click_add_button()
+    add_user = AddUserPage(driver)
+    assert add_user.add_user_page_is_displayed()
+    add_user.click_cancel()
+    assert admin.admin_page_is_displayed()

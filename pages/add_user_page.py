@@ -40,5 +40,8 @@ class AddUserPage(BasePage):
 
     def click_save(self):
         self.click(self.SAVE_BUTTON)
+
+    def click_cancel(self):
+        self.click(self.CANCEL_BUTTON)
     
     
