@@ -17,12 +17,13 @@ class AdminPage(BasePage):
     NO_RECORDS_TEXT = (By.XPATH, "//span[text()='No Records Found']")
 
     FIRST_ROW_USERNAME_CELL = (By.XPATH, "(//div[@class='oxd-table-body']/div[contains(@class,'oxd-table-card')])[1]""//div[contains(@class,'oxd-table-cell')][2]")
-
+    ADD_BUTTON = (By.XPATH, "//button[normalize-space()='Add']")
+    ORANGEHRM_LINK = (By.XPATH, "//a[normalize-space()='OrangeHRM, Inc']")
 
     def admin_page_is_displayed(self):
         return self.find_visible(self.ADMIN_HEADER)
     
-    def search_user(self, username, timeout=10):
+    def search_username(self, username, timeout=10):
         self.type(self.USERNAME_INPUT, username)
         self.click(self.SEARCH_BUTTON, timeout)
 
@@ -34,6 +35,14 @@ class AdminPage(BasePage):
     
     def no_record_text_is_displayed(self):
         return self.find_visible(self.NO_RECORDS_TEXT)
+    
+    def click_add_button(self):
+        self.click(self.ADD_BUTTON)
+
+    def click_orangeHRM_link(self):
+        self.click(self.ORANGEHRM_LINK)
+    
+    
 
     
 

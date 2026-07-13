@@ -42,6 +42,9 @@ class BasePage:
         return WebDriverWait(self.driver, timeout).until(
             EC.visibility_of_all_elements_located(locator)
         )
+
+    def get_text(self, locator, timeout=10):
+        return self.find(locator, timeout).text
     
     def press_enter(self, locator, timeout=10):
         self.find(locator).send_keys(Keys.ENTER)
