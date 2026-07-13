@@ -21,6 +21,12 @@ class AdminPage(BasePage):
     ORANGEHRM_LINK = (By.XPATH, "//a[normalize-space()='OrangeHRM, Inc']")
     ADD_HEADER = (By.XPATH, "//h6[text()='Add User']")
 
+    FIRST_ROW_CHECKBOX = (By.XPATH, "(//div[@class='oxd-table-body']/div[contains(@class,'oxd-table-card')])[1]//input[@type='checkbox']")
+    DELETE_SELECTED_BUTTON = (By.XPATH, "//button[normalize-space()='Delete Selected']")
+    CONFIRM_DELETE_BUTTON = (By.XPATH, "//button[normalize-space()='Yes, Delete']")
+    TRASH_BUTTON = (By.XPATH, "//i[@class='oxd-icon bi-trash']")
+    SUCCESS_DELETE_MESSAGE = (By.XPATH, "//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']")
+
     def admin_page_is_displayed(self):
         return self.find_visible(self.ADMIN_HEADER)
     
@@ -63,6 +69,23 @@ class AdminPage(BasePage):
 
     def add_user_page_is_displayed(self):
         return self.find_visible(self.ADD_HEADER)
+    
+    def get_result_rows(self):
+        try:
+            return self.find_all_visible(self.RESULT_TABLE_ROWS, timeout=5)
+        except Exception:
+            return []
+    
+
+    def select_first_row_checkbox(self):
+        self.js_click(self.FIRST_ROW_CHECKBOX)
+    
+
+    def click_delete_selected(self):
+        self.click(self.DELETE_SELECTED_BUTTON)
+
+    def confirm_delete(self):
+        self.click(self.CONFIRM_DELETE_BUTTON)
 
     def click_orangeHRM_link(self):
         self.click(self.ORANGEHRM_LINK)
