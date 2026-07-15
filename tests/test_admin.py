@@ -109,6 +109,25 @@ def test_delete_user(driver):
     admin2.search_username("Sanzita70")
     assert admin2.no_record_text_is_displayed()
 
+def test_user_management_shows_records(driver):
+    login = LoginPage(driver)
+    login.load()
+    login.valid_credential_login("Admin", "admin123")
+
+    dashboard = DashboardPage(driver)
+    assert dashboard.dashboard_is_visible()
+    dashboard.click_admin_menu()
+    
+    admin = AdminPage(driver)
+    assert admin.admin_page_is_displayed()
+
+    admin.click_user_management_dropdown()
+    admin.click_users_menu_item()
+    admin.wait_for_loader_to_disappear()
+
+    rows = admin.get_result_rows()
+    assert len(rows) > 0
+
     
 def test_orangeHRM_link(driver):
     test_open_admin_page(driver)
