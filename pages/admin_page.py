@@ -26,8 +26,12 @@ class AdminPage(BasePage):
     CONFIRM_DELETE_BUTTON = (By.XPATH, "//button[normalize-space()='Yes, Delete']")
     TRASH_BUTTON = (By.XPATH, "//i[@class='oxd-icon bi-trash']")
     SUCCESS_DELETE_MESSAGE = (By.XPATH, "//div[@class='oxd-toast oxd-toast--success oxd-toast-container--toast']")
+
     USER_MANAGEMENT_DROPDOWN = (By.XPATH, "//span[normalize-space()='User Management']")
     USERS_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Users']")
+
+    JOB_DROPDOWN = (By.XPATH, "//span[normalize-space()='Job']")
+    JOB_TITLES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Job Titles']")
 
     def admin_page_is_displayed(self):
         return self.find_visible(self.ADMIN_HEADER)
@@ -94,6 +98,12 @@ class AdminPage(BasePage):
 
     def click_users_menu_item(self):
         self.click(self.USERS_MENU_ITEM)
+
+    def click_job_dropdown(self):
+        self.click(self.JOB_DROPDOWN)
+
+    def click_job_titles_menu_item(self):
+        self.click(self.JOB_TITLES_MENU_ITEM)
 
     def click_orangeHRM_link(self):
         self.click(self.ORANGEHRM_LINK)

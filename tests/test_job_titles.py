@@ -25,3 +25,25 @@ def test_job_titles_shows_records(driver):
 
     rows = job_titles.get_result_rows()
     assert len(rows) > 0
+
+def test_add_job_button(driver):
+    login = LoginPage(driver)
+    login.load()
+    login.valid_credential_login("Admin", "admin123")
+
+    dashboard = DashboardPage(driver)
+    assert dashboard.dashboard_is_visible()
+    dashboard.click_admin_menu()
+
+    admin = AdminPage(driver)
+    assert admin.admin_page_is_displayed()
+
+    admin.click_job_dropdown()
+    admin.click_job_titles_menu_item()
+
+    job_titles = JobTitlesPage(driver)
+    assert job_titles.page_is_displayed()
+    job_titles.wait_for_loader_to_disappear()
+
+    job_titles.click_add_button()
+    assert job_titles.add_job_header_is_visible()
