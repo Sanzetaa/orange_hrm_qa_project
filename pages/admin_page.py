@@ -32,6 +32,10 @@ class AdminPage(BasePage):
 
     JOB_DROPDOWN = (By.XPATH, "//span[normalize-space()='Job']")
     JOB_TITLES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Job Titles']")
+    PAY_GRADES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Pay Grades']")
+
+    def click_pay_grades_menu_item(self):
+        self.click(self.PAY_GRADES_MENU_ITEM)
 
     def admin_page_is_displayed(self):
         return self.find_visible(self.ADMIN_HEADER)
