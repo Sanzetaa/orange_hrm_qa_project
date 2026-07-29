@@ -8,6 +8,11 @@ class AddPayGradePage(BasePage):
     CANCEL_BUTTON = (By.XPATH, "//button[normalize-space()='Cancel']")
     SUCCESS_TOAST = (By.XPATH, "//div[contains(@class,'oxd-toast--success')]//p[contains(@class,'oxd-text--toast-message')]")
     EDIT_PAY_GRADE_HEADER =(By.XPATH, "//h6[text()='Edit Pay Grade']")
+    ADD_CURRENCY_HEADER = (By.XPATH, "//h6[text()='Add Currency']")
+    ADD_CURRENCY_BUTTON = (By.XPATH, "//button[normalize-space()='Add']")
+    CURRENCY_DROPDOWN = (By.XPATH, "//label[text()='Currency']/ancestor::div[contains(@class,'oxd-input-group')]//div[contains(@class,'oxd-select-text')]")
+    MIN_SALARY_INPUT = (By.XPATH, "(//input[contains(@class,'oxd-input--active')])[1]")
+    MAX_SALARY_INPUT = (By.XPATH, "(//input[contains(@class,'oxd-input--active')])[2]")
 
     def page_is_displayed(self):
         return self.find_visible(self.HEADER)
@@ -23,3 +28,19 @@ class AddPayGradePage(BasePage):
 
     def get_success_message(self):
         return self.find_visible(self.SUCCESS_TOAST, timeout=10).text
+
+    def select_currency(self, currency_text):
+        self.click(self.CURRENCY_DROPDOWN)
+        option = (By.XPATH, f"//div[@role='listbox']//span[text()='{currency_text}']")
+        self.click(option)
+
+    def click_add_currency(self):
+        self.click(self.ADD_CURRENCY_BUTTON)
+
+    def type_min_salary(self, amount):
+        self.type(self.MIN_SALARY_INPUT, amount)
+
+    def type_max_salary(self, amount):
+        self.type(self.MAX_SALARY_INPUT, amount)
+
+    

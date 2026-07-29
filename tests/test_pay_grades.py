@@ -80,3 +80,49 @@ def test_add_pay_grade(driver):
 
     assert add_pay_grade.edit_page_is_displayed()
 
+
+def test_add_currency_to_pay_grade(driver):
+    login = LoginPage(driver)
+    login.load()
+    login.valid_credential_login("Admin", "admin123")
+    
+    dashboard = DashboardPage(driver)
+    assert dashboard.dashboard_is_visible()
+    dashboard.click_admin_menu()
+    
+    admin = AdminPage(driver)
+    assert admin.admin_page_is_displayed()
+    
+    admin.click_job_dropdown()
+    admin.click_pay_grades_menu_item()
+        
+    pay_grades = PayGradesPage(driver)
+    assert pay_grades.page_is_displayed()
+    
+    pay_grades.click_add_button()
+    
+    add_pay_grade = AddPayGradePage(driver)
+    assert add_pay_grade.page_is_displayed()
+    
+        
+    add_pay_grade.type_name("Grade 09")
+    add_pay_grade.click_save()
+    
+    assert add_pay_grade.edit_page_is_displayed()
+
+    add_pay_grade.click_add_currency()
+    add_pay_grade.select_currency("NPR - Nepalese Rupee")
+    add_pay_grade.type_min_salary("1000")
+    add_pay_grade.type_max_salary("5000")
+
+    driver.save_screenshot("before_pay_grade_save.png")
+
+    add_pay_grade.click_save()
+
+
+    assert add_pay_grade.get_success_message() == "Successfully Updated"
+
+    
+
+    
+
