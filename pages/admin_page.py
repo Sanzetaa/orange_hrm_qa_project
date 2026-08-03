@@ -35,7 +35,11 @@ class AdminPage(BasePage):
     PAY_GRADES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Pay Grades']")
 
     EMPLOYEE_STATUS_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Employment Status']")
+    JOB_CATEGORIES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Job Categories']")
 
+
+    def click_job_categories_menu_item(self):
+        self.click(self.JOB_CATEGORIES_MENU_ITEM)
 
 
     def click_employee_status_menu_item(self):
