@@ -34,6 +34,13 @@ class AdminPage(BasePage):
     JOB_TITLES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Job Titles']")
     PAY_GRADES_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Pay Grades']")
 
+    EMPLOYEE_STATUS_MENU_ITEM = (By.XPATH, "//a[normalize-space()='Employment Status']")
+
+
+
+    def click_employee_status_menu_item(self):
+        self.click(self.EMPLOYEE_STATUS_MENU_ITEM)
+
     def click_pay_grades_menu_item(self):
         self.click(self.PAY_GRADES_MENU_ITEM)
 
@@ -108,6 +115,8 @@ class AdminPage(BasePage):
 
     def click_job_titles_menu_item(self):
         self.click(self.JOB_TITLES_MENU_ITEM)
+
+    
 
     def click_orangeHRM_link(self):
         self.click(self.ORANGEHRM_LINK)
